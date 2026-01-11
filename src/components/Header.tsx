@@ -1,6 +1,15 @@
 
 
+import { useEffect, useState } from "react";
+
 export default function Header() {
+  const [userId, setUserId] = useState<string | null>(null);
+
+  useEffect(() => {
+    const storedUserId = localStorage.getItem("userId");
+    setUserId(storedUserId);
+  }, []);
+
   return (
     <header className="bg-white border-b border-gray-200 px-8 py-4">
       <div className="flex items-center justify-between">
@@ -10,7 +19,7 @@ export default function Header() {
           <span className="text-gray-700">
             User{" "}
             <span className="text-sm text-gray-400">
-              [ID: 101]
+              [ID: {userId ?? "—"}]
             </span>
           </span>
         </div>
@@ -18,3 +27,4 @@ export default function Header() {
     </header>
   );
 }
+

@@ -19,6 +19,7 @@ export default function Dashboard() {
 
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+  const [userId, setUserId] = useState<string | null>(null);
   const [user, setUser] = useState<any>(null);
   const [stats, setStats] = useState<any>(null);
   const [recentActivity, setRecentActivity] = useState<any[]>([]);
@@ -30,7 +31,7 @@ export default function Dashboard() {
 
         const token = localStorage.getItem("authToken"); // or use cookie
         const userId = localStorage.getItem("userId"); // or use cookie
-
+        setUserId(userId);
 
 
         const { data } = await axios.get("http://localhost:3000/docs/dashboard", {
@@ -49,15 +50,16 @@ export default function Dashboard() {
         });
 
 
-
         // Recent documents: get last 5 uploaded by user
-        const recentDocs = await axios.get(`http://localhost:3000/docs/recent/${data.userId}`, {
+        const recentDocs = await axios.get(`http://localhost:3000/docs/dashboard`, {
           headers: {
             auth: `${token}`,
           },
         });
 
+
         setRecentActivity(recentDocs.data.documents || []);
+
       } catch (err: any) {
         const message = err.response?.data?.error || err.message || "Failed to load dashboard";
         setError(message);
@@ -71,6 +73,7 @@ export default function Dashboard() {
 
   const handleViewDocuments = () => navigate("/documents");
   const handleUploadDocument = () => navigate("/upload");
+  
 
   if (loading) return <p className="text-center mt-10">Loading dashboard...</p>;
   if (error) return <p className="text-center mt-10 text-red-600">{error}</p>;
@@ -79,7 +82,7 @@ export default function Dashboard() {
     <div>
       {/* Greeting */}
       <h1 className="text-3xl font-bold text-gray-900 mb-2">
-        Welcome, {user.username} <span className="text-lg text-gray-400">[ID: {user.id}]</span>
+        Welcome, {user.username} <span className="text-lg text-gray-400">ID: {userId}</span>
       </h1>
       <p className="text-gray-600 mb-8">
         Manage your secure documents and profile.
