@@ -11,6 +11,7 @@ import Dashboard from "./pages/Dashboard.tsx";
 import Documents from "./pages/Documents.tsx";
 import Layout from "./components/Layout.tsx";
 import Signup from "./pages/Signup.tsx";
+import UploadDocument from "./pages/UploadDocument.tsx";
 
 export default function App() {
   return (
@@ -28,6 +29,8 @@ export default function App() {
         <Route element={<Layout />}>
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/documents" element={<Documents />} />
+          <Route path="/upload" element={<UploadDocument />} />
+    
         </Route>
 
         {/* Default */}

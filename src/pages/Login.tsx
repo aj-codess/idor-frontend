@@ -30,7 +30,6 @@ export default function Login() {
       );
       console.log(res.data.user_id);
 
-      // Assuming backend returns { success: true } on successful login
       if (res.data.status === 200) {
 
 
@@ -39,7 +38,7 @@ export default function Login() {
         localStorage.setItem("authToken", token); 
         localStorage.setItem("userId", res.data.user_id);
 
-        //navigate("/dashboard"); // redirect to dashboard
+        navigate("/dashboard"); // redirect to dashboard
 
       } else {
         throw new Error(res.data.message || "Login failed");
