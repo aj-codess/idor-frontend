@@ -10,8 +10,12 @@ export default function Documents() {
   const [docs, setDocs] = useState<Document[]>([]);
 
   useEffect(() => {
+
+        const token = localStorage.getItem("authToken"); // or use cookie
+        const userId = localStorage.getItem("userId"); // or use cookie
+
     // 🔜 Replace with real API call
-    fetch("/api/documents")
+    fetch("http://localhost:3000/docs/documents")
       .then((res) => res.json())
       .then(setDocs);
   }, []);
