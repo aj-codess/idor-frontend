@@ -57,7 +57,7 @@ export default function Documents() {
 
     if (!token) {
       alert("Not authenticated");
-      return;
+      //return;
     }
 
     const response = await axios.get(

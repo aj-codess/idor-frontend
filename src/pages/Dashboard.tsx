@@ -34,7 +34,7 @@ export default function Dashboard() {
         setUserId(userId);
 
 
-        const { data } = await axios.get("https://localhost:3000/docs/dashboard", {
+        const { data } = await axios.get("http://localhost:3000/docs/dashboard", {
           headers: {
             auth: `${token}`, // matches your auth middleware
           },
@@ -51,7 +51,7 @@ export default function Dashboard() {
 
 
         // Recent documents: get last 5 uploaded by user
-        const recentDocs = await axios.get(`https://localhost:3000/docs/dashboard`, {
+        const recentDocs = await axios.get(`http://localhost:3000/docs/dashboard`, {
           headers: {
             auth: `${token}`,
           },

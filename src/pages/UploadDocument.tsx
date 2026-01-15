@@ -36,7 +36,7 @@ export default function UploadDocument() {
         formData.append("title", title);
       }
 
-      await axios.post("https://localhost:3000/docs/upload", formData, {
+      await axios.post("http://localhost:3000/docs/upload", formData, {
         headers: {
           auth: token, // matches your auth middleware
           "Content-Type": "multipart/form-data",

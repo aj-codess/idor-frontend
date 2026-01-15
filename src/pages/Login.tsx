@@ -22,7 +22,7 @@ export default function Login() {
 
       // 🔐 API call using Axios
       const res = await axios.post(
-        "https://localhost:3000/auth/login",
+        "http://localhost:3000/auth/login",
         {email, password },
         {
           withCredentials: true, // send cookies if backend uses session auth
